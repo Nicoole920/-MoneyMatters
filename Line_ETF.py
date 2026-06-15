@@ -105,7 +105,7 @@ def generate_stock_to_etf_report(etf_list):
     return "\n".join(output_lines)
 
 
-    def send_line_message(content):
+def send_line_message(content):
     """透過 LINE Messaging API 發送推播訊息"""
     # 從 GitHub Secrets 讀取 LINE 憑證
     line_access_token = os.environ.get("LINE_ACCESS_TOKEN")
