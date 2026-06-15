@@ -5,6 +5,7 @@ from email.mime.text import MIMEText
 import pandas as pd
 import twstock
 import yfinance as yf
+import requests  
 
 # --- 1. 動態生成股票與 ETF 中文名稱對照表 (整合 twstock) ---
 stock_map = {
