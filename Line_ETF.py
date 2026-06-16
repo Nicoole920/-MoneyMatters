@@ -45,7 +45,7 @@ def get_etf_holdings(symbol):
             df['ETF名稱'] = stock_map.get(clean_etf_code, f"ETF_{clean_etf_code}")
             df['個股代碼'] = df.index.map(lambda x: str(x).replace('.TW', '').replace('.TWO', ''))
             df['個股名稱'] = df['個股代碼'].apply(lambda x: stock_map.get(x, ""))
-            df['持股比例(%)'] = raw_holding_values
+            df['持股比例(%)'] = raw_holding_values*100
             
             # 將 AUM 轉換為億元並存入欄位（保留浮點數供排序）
             df['基金AUM(億)'] = round(aum / 100000000, 2) if aum else 0
@@ -92,7 +92,7 @@ def generate_stock_to_etf_report(etf_list):
     for _, row in combined_df.iterrows():
         current_stock_code = row['個股代碼']
         if last_stock_code is not None and current_stock_code != last_stock_code:
-            output_lines.append("============================================================")
+            output_lines.append("==================")
         
         rounded_percent = round(float(row['持股比例(%)']), 2)
         rounded_aum = round(float(row['基金AUM(億)']))
